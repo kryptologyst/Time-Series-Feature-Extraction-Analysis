@@ -1,0 +1,42 @@
+# Configuration for Time Series Feature Extraction Project
+
+data:
+  n_samples: 100
+  window_length: 200
+  noise_level: 0.1
+  random_seed: 42
+  
+features:
+  tsfresh:
+    default_fc_parameters: "minimal"
+    impute_function: "mean"
+  
+models:
+  arima:
+    order: [1, 1, 1]
+    seasonal_order: [1, 1, 1, 12]
+  
+  prophet:
+    yearly_seasonality: true
+    weekly_seasonality: true
+    daily_seasonality: false
+  
+  lstm:
+    hidden_size: 64
+    num_layers: 2
+    dropout: 0.2
+    epochs: 100
+    batch_size: 32
+  
+anomaly_detection:
+  isolation_forest:
+    contamination: 0.1
+    random_state: 42
+  
+visualization:
+  figure_size: [12, 8]
+  style: "seaborn-v0_8"
+  
+logging:
+  level: "INFO"
+  format: "{time:YYYY-MM-DD HH:mm:ss} | {level} | {name}:{function}:{line} - {message}"
